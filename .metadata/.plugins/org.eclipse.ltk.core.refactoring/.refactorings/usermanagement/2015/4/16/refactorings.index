@@ -28,3 +28,6 @@
 1429219755417	Extract local variable 'query'
 1429220121327	Extract method 'update'
 1429220297243	Delete elements
+1429220393555	Rename field 'jdbcContext'
+1429220465624	Encapsulate field 'jdbcTemplate'
+1429220997362	Extract local variable 'queryForObject'
