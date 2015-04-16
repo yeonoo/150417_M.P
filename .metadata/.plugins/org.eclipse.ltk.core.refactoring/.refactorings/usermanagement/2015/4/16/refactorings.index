@@ -19,3 +19,4 @@
 1429214561196	Delete element
 1429215260726	Rename field 'connectionMaker'
 1429215803450	Delete elements
+1429217221678	Extract method 'makeStatement'

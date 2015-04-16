@@ -1,0 +1,16 @@
+package net.daum;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+public class GetUserStatementStrategy implements StatementStrategy {
+
+	@Override
+	public PreparedStatement makeStatement(Object object, Connection connection)
+			throws SQLException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
