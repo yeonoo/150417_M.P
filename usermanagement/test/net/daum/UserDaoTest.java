@@ -1,16 +1,19 @@
 package net.daum;
 
 import static org.junit.Assert.*;
+
+import java.sql.SQLException;
+
 import org.junit.Test;
 
 public class UserDaoTest {
 	@Test
-	public void get() {
+	public void get() throws ClassNotFoundException, SQLException {
 		UserDao userDao = new UserDao();
-		String id = "1";
+		String id = "1046339528";
 		User user = userDao.get(id);
-		assertEquals("1", user.getId());
+		assertEquals("1046339528", user.getId());
 		assertEquals("«„¿±»£", user.getName());
-		assertEquals("1234", user.getPassword());
+		assertEquals("111", user.getPassword());
 	}
 }
