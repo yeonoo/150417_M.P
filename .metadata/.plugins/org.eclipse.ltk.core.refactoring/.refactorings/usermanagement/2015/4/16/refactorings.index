@@ -4,3 +4,4 @@
 1429206327151	Extract local variable 'id'
 1429206349308	Extract local variable 'name'
 1429206352995	Extract local variable 'password'
+1429206717082	Extract method 'getConnection'
