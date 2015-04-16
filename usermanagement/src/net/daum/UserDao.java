@@ -23,7 +23,7 @@ public class UserDao {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		ResultSet resultSet = null;
-		User user;
+		User user = null;
 		try {
 			connection = dataSource.getConnection();
 			
@@ -32,12 +32,12 @@ public class UserDao {
 			preparedStatement.setString(1, id);
 			
 			resultSet = preparedStatement.executeQuery();
-			resultSet.next();
-			
-			user = new User();
-			user.setId(resultSet.getString("id"));
-			user.setName(resultSet.getString("name"));
-			user.setPassword(resultSet.getString("password"));
+			if (resultSet.next()) {				
+				user = new User();
+				user.setId(resultSet.getString("id"));
+				user.setName(resultSet.getString("name"));
+				user.setPassword(resultSet.getString("password"));				
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 			throw e;
@@ -75,6 +75,36 @@ public class UserDao {
 			preparedStatement.setString(1, user.getId());
 			preparedStatement.setString(2, user.getName());
 			preparedStatement.setString(3, user.getPassword ());
+			
+			preparedStatement.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			if (preparedStatement != null)
+				try {
+					preparedStatement.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			if (connection != null)
+				try {
+					connection.close();
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+		}
+	}
+
+	public void delete(String id) throws SQLException {
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		try {
+			connection = dataSource.getConnection();
+			
+			preparedStatement = connection.prepareStatement(
+					"delete from userinfo where id = ?");
+			preparedStatement.setString(1, id);
 			
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {

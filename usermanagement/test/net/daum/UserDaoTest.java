@@ -45,4 +45,18 @@ public class UserDaoTest {
 		assertEquals(name, addedUser.getName());
 		assertEquals(password, addedUser.getPassword());
 	}
+	
+	@Test
+	public void delete() throws SQLException {
+		User user = new User();
+		String id = String.valueOf(new Random().nextInt());
+		String name = "«„¿±»£";
+		String password = "1234";
+		user.setId(id);
+		user.setName(name);
+		user.setPassword(password);
+		userDao.add(user);
+		userDao.delete(id);
+		assertNull(userDao.get(id));
+	}
 }
