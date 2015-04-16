@@ -13,6 +13,7 @@ import com.mysql.jdbc.Statement;
 
 public class UserDao {
 	private JdbcContext jdbcContext;
+	
 	public UserDao() {
 		
 	}
@@ -31,31 +32,17 @@ public class UserDao {
 	}
 
 	public void add(final User user) throws SQLException {
-		jdbcContext.jdbcContextWithStatementStrategyForUpdate(new StatementStrategy() {			
-			@Override
-			public PreparedStatement makeStatement(Connection connection)
-					throws SQLException {
-				PreparedStatement preparedStatement;
-				preparedStatement = connection.prepareStatement("insert into userinfo(id, name, password) values(?, ?, ?)");
-				preparedStatement.setString(1, user.getId());
-				preparedStatement.setString(2, user.getName());
-				preparedStatement.setString(3, user.getPassword());
-				return preparedStatement;
-			}
-		});
+		final String query = "insert into userinfo(id, name, password) values(?, ?, ?)";
+		final String[] params = new String[] {user.getId(), user.getName(), user.getPassword()};
+
+		jdbcContext.update(query, params);
 	}
 
 	public void delete(final String id) throws SQLException {
-		jdbcContext.jdbcContextWithStatementStrategyForUpdate(new StatementStrategy() {			
-			@Override
-			public PreparedStatement makeStatement(Connection connection)
-					throws SQLException {
-				PreparedStatement preparedStatement;
-				preparedStatement = connection.prepareStatement("delete from userinfo where id = ?");
-				preparedStatement.setString(1, id);
-				return preparedStatement; 
-			}
-		});
+		final String query = "delete from userinfo where id = ?";
+		final String[] params = new String[] {id};
+
+		jdbcContext.update(query, params);
 	}
 
 	public void setJdbcContext(JdbcContext jdbcContext) {
