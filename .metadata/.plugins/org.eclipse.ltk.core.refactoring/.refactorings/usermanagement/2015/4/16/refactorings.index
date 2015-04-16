@@ -5,3 +5,10 @@
 1429206349308	Extract local variable 'name'
 1429206352995	Extract local variable 'password'
 1429206717082	Extract method 'getConnection'
+1429208488415	Delete element
+1429208490490	Delete element
+1429208565376	Extract interface 'ConnectionMaker'
+1429208600235	Rename field 'simpleConnectionMaker'
+1429208622663	Rename type 'SimpleConnectionMaker'
+1429208659328	Copy compilation unit
+1429208677596	Rename type 'DConnectionMaker'
