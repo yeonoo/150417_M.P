@@ -12,3 +12,4 @@
 1429208622663	Rename type 'SimpleConnectionMaker'
 1429208659328	Copy compilation unit
 1429208677596	Rename type 'DConnectionMaker'
+1429209257504	Extract method 'getConnectionMaker'
