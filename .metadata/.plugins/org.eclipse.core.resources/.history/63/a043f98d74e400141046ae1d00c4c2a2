@@ -1,0 +1,20 @@
+package net.daum;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
+import javax.sql.DataSource;
+
+import org.springframework.jdbc.datasource.SimpleDriverDataSource;
+
+import com.mysql.jdbc.Driver;
+
+public class DConnectionMaker extends SimpleDriverDataSource {
+	public DConnectionMaker() {
+		this.setDriverClass(Driver.class);
+		this.setUrl("jdbc:mysql://117.17.102.143/Spring?characterEncoding=utf-8");
+		this.setUsername("root");
+		this.setPassword("Starter");
+	}
+}
