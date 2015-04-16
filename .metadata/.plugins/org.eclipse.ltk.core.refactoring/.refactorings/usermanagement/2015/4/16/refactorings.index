@@ -20,3 +20,7 @@
 1429215260726	Rename field 'connectionMaker'
 1429215803450	Delete elements
 1429217221678	Extract method 'makeStatement'
+1429218368920	Change method 'makeStatement'
+1429218668802	Extract method 'jdbcContextWithStatementStrategyForUpdate'
+1429218764133	Extract method 'jdbcContextWithStatementStrategyForQuery'
+1429218976430	Encapsulate field 'jdbcContext'
