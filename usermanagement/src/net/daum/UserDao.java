@@ -1,5 +1,6 @@
 package net.daum;
 
+import java.lang.Thread.State;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -7,6 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.sql.DataSource;
+
+import com.mysql.jdbc.Statement;
 
 public class UserDao {
 	private DataSource dataSource;
@@ -26,10 +29,8 @@ public class UserDao {
 		User user = null;
 		try {
 			connection = dataSource.getConnection();
-			
-			preparedStatement = connection.prepareStatement(
-					"select * from userinfo where id = ?");
-			preparedStatement.setString(1, id);
+			StatementStrategy statementStrategy = new GetUserStatementStrategy();
+			preparedStatement = statementStrategy.makeStatement(id, connection);
 			
 			resultSet = preparedStatement.executeQuery();
 			if (resultSet.next()) {				
@@ -69,12 +70,8 @@ public class UserDao {
 		PreparedStatement preparedStatement = null;
 		try {
 			connection = dataSource.getConnection();
-			
-			preparedStatement = connection.prepareStatement(
-					"insert into userinfo(id, name, password) values(?, ?, ?)");
-			preparedStatement.setString(1, user.getId());
-			preparedStatement.setString(2, user.getName());
-			preparedStatement.setString(3, user.getPassword ());
+			StatementStrategy statementStrategy = new AddUserStatementStrategy();
+			preparedStatement = statementStrategy.makeStatement(user, connection);			
 			
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
@@ -101,11 +98,9 @@ public class UserDao {
 		PreparedStatement preparedStatement = null;
 		try {
 			connection = dataSource.getConnection();
-			
-			preparedStatement = connection.prepareStatement(
-					"delete from userinfo where id = ?");
-			preparedStatement.setString(1, id);
-			
+			StatementStrategy statementStrategy = new DeleteUserStatementStrategy();
+			preparedStatement = statementStrategy.makeStatement(id, connection);			
+
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
