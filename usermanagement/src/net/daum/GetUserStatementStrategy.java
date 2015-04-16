@@ -5,12 +5,18 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class GetUserStatementStrategy implements StatementStrategy {
+	private String id;
+	
+	public GetUserStatementStrategy(String id) {
+		this.id = id;
+	}
+
 	@Override
-	public PreparedStatement makeStatement(Object object, Connection connection)
+	public PreparedStatement makeStatement(Connection connection)
 			throws SQLException {
 		PreparedStatement preparedStatement;
 		preparedStatement = connection.prepareStatement("select * from userinfo where id = ?");
-		preparedStatement.setString(1, (String) object);
+		preparedStatement.setString(1, id);
 		return preparedStatement;
 	}
 }

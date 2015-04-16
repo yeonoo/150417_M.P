@@ -12,112 +12,28 @@ import javax.sql.DataSource;
 import com.mysql.jdbc.Statement;
 
 public class UserDao {
-	private DataSource dataSource;
-	
-	public void setDataSource(DataSource dataSource) {
-		this.dataSource = dataSource;
-	}
-
+	private JdbcContext jdbcContext;
 	public UserDao() {
 		
 	}
 	
 	public User get(String id) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		ResultSet resultSet = null;
-		User user = null;
-		try {
-			connection = dataSource.getConnection();
-			StatementStrategy statementStrategy = new GetUserStatementStrategy();
-			preparedStatement = statementStrategy.makeStatement(id, connection);
-			
-			resultSet = preparedStatement.executeQuery();
-			if (resultSet.next()) {				
-				user = new User();
-				user.setId(resultSet.getString("id"));
-				user.setName(resultSet.getString("name"));
-				user.setPassword(resultSet.getString("password"));				
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw e;
-		} finally {
-			if (resultSet != null)
-				try {
-					resultSet.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			if (preparedStatement != null)
-				try {
-					preparedStatement.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			if (connection != null)
-				try {
-					connection.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-		}		
-		return user;
+		StatementStrategy statementStrategy = new GetUserStatementStrategy(id);
+		return jdbcContext.jdbcContextWithStatementStrategyForQuery(statementStrategy);
 	}
 
+
 	public void add(User user) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		try {
-			connection = dataSource.getConnection();
-			StatementStrategy statementStrategy = new AddUserStatementStrategy();
-			preparedStatement = statementStrategy.makeStatement(user, connection);			
-			
-			preparedStatement.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw e;
-		} finally {
-			if (preparedStatement != null)
-				try {
-					preparedStatement.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			if (connection != null)
-				try {
-					connection.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-		}
+		StatementStrategy statementStrategy = new AddUserStatementStrategy(user);
+		jdbcContext.jdbcContextWithStatementStrategyForUpdate(statementStrategy);
 	}
 
 	public void delete(String id) throws SQLException {
-		Connection connection = null;
-		PreparedStatement preparedStatement = null;
-		try {
-			connection = dataSource.getConnection();
-			StatementStrategy statementStrategy = new DeleteUserStatementStrategy();
-			preparedStatement = statementStrategy.makeStatement(id, connection);			
+		StatementStrategy statementStrategy = new DeleteUserStatementStrategy(id);
+		jdbcContext.jdbcContextWithStatementStrategyForUpdate(statementStrategy);
+	}
 
-			preparedStatement.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw e;
-		} finally {
-			if (preparedStatement != null)
-				try {
-					preparedStatement.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			if (connection != null)
-				try {
-					connection.close();
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-		}
+	public void setJdbcContext(JdbcContext jdbcContext) {
+		this.jdbcContext = jdbcContext;
 	}
 }
