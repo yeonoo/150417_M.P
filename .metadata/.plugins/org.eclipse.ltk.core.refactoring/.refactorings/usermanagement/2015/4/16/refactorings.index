@@ -13,3 +13,6 @@
 1429208659328	Copy compilation unit
 1429208677596	Rename type 'DConnectionMaker'
 1429209257504	Extract method 'getConnectionMaker'
+1429212715149	Extract method 'setup'
+1429213105262	Rename method 'getUserDao'
+1429213165082	Rename method 'getConnectionMaker'

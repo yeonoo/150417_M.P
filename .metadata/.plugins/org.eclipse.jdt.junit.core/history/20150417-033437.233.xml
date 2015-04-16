@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="UserDaoTest" project="usermanagement" tests="2" started="2" failures="0" errors="0" ignored="0">
+  <testsuite name="net.daum.UserDaoTest" time="0.725">
+    <testcase name="add" classname="net.daum.UserDaoTest" time="0.666"/>
+    <testcase name="get" classname="net.daum.UserDaoTest" time="0.059"/>
+  </testsuite>
+</testrun>
