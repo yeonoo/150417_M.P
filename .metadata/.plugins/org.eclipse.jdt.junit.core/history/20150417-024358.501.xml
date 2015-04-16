@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="UserDaoTest" project="usermanagement" tests="2" started="2" failures="0" errors="1" ignored="0">
+  <testsuite name="net.daum.UserDaoTest" time="3.402">
+    <testcase name="add" classname="net.daum.UserDaoTest" time="3.334">
+      <error>com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry '10' for key 'PRIMARY'&#13;
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)&#13;
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)&#13;
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)&#13;
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)&#13;
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:411)&#13;
+	at com.mysql.jdbc.Util.getInstance(Util.java:386)&#13;
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:1041)&#13;
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4237)&#13;
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:4169)&#13;
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2617)&#13;
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2778)&#13;
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2834)&#13;
+	at com.mysql.jdbc.PreparedStatement.executeInternal(PreparedStatement.java:2156)&#13;
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2441)&#13;
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2366)&#13;
+	at com.mysql.jdbc.PreparedStatement.executeUpdate(PreparedStatement.java:2350)&#13;
+	at net.daum.UserDao.add(UserDao.java:66)&#13;
+	at net.daum.UserDaoTest.add(UserDaoTest.java:27)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)&#13;
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)&#13;
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)&#13;
+	at java.lang.reflect.Method.invoke(Unknown Source)&#13;
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:47)&#13;
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)&#13;
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:44)&#13;
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)&#13;
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:271)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:70)&#13;
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:50)&#13;
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:238)&#13;
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:63)&#13;
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:236)&#13;
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:53)&#13;
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:229)&#13;
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:309)&#13;
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:50)&#13;
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:675)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)&#13;
+&#13;
+</error>
+    </testcase>
+    <testcase name="get" classname="net.daum.UserDaoTest" time="0.064"/>
+  </testsuite>
+</testrun>
